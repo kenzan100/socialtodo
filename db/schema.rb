@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20111218033049) do
   end
 
   create_table "users", :force => true do |t|
-    t.integer  "facebook_id"
+    t.string   "facebook_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                                 :default => "", :null => false
