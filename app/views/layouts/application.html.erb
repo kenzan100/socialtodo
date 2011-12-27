@@ -9,7 +9,7 @@
 <body>
 
 <% if user_signed_in? %>
-  Hi! <%= current_user.name %> | <%= link_to "Sign Out", destroy_user_session_path %>
+  Hi! <img src="https://graph.facebook.com/<%= current_user.facebook_id %>/picture" width="20" height="20"> <%= link_to current_user.name, root_url %> | <%= link_to "my task", '/my' %> | <%= link_to 'タスクの登録', new_task_path %> | <%= link_to "Sign Out", destroy_user_session_path %>
 <% else %>
   <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
 <% end %>
