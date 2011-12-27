@@ -1,0 +1,11 @@
+<h1>友達のタスク一欄</h1>
+
+<table>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><img src="https://graph.facebook.com/<%= task.user.facebook_id %>/picture" width="20" height="20"></td>
+    <td><%= task.description %></td>
+  </tr>
+<% end %>
+</table>
