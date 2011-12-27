@@ -15,11 +15,6 @@ class TasksController < ApplicationController
       end
 
       @tasks = Task.where(:user_id => friend_id)
-
-      api = Koala::Facebook::API.new(current_user.token)
-
-      # TODO
-      api.put_connections("me", "graphapiapp:ganbare", :task => 'http://socialtodo.herokuapp.com/tasks/1')
       
     else
       @tasks = Task.all
@@ -111,4 +106,15 @@ class TasksController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def ganbare
+
+    #TODO double remote call
+    
+    api = Koala::Facebook::API.new(current_user.token)
+    api.put_connections("me", "graphapiapp:ganbare", :task => 'http://socialtodo.herokuapp.com/tasks/'+params[:id])
+    render
+  end
+
+
 end

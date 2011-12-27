@@ -6,6 +6,7 @@
   <tr>
     <td><img src="https://graph.facebook.com/<%= task.user.facebook_id %>/picture" width="20" height="20"></td>
     <td><%= task.description %></td>
+    <td><%= link_to 'GANBARE', { :action => "ganbare", :id => task.id }, :remote => true, :method => 'post' %></td>
   </tr>
 <% end %>
 </table>
