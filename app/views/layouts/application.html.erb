@@ -5,6 +5,16 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <% if controller.controller_name === 'tasks' && controller.action_name === 'index' %>
+    <meta property="og:title" content="<%= @task.description %>" />
+  <meta property="og:image" content="http://clic.k-free.net/1manen.jpg" />
+  <meta property="og:description" content="<%= @task.description %>" />
+  <meta property="fb:app_id" content="236814959724005" />
+  <meta property="og:url" content="http://socialtodo.herokuapp.com/tasks/<%= @task.id %>" />
+  <meta property="og:type" content="graphapiapp:task" />
+  <% end %>
+
 </head>
 <body>
 

@@ -19,7 +19,7 @@ class TasksController < ApplicationController
       api = Koala::Facebook::API.new(current_user.token)
 
       # TODO
-      api.put_connections("me", "graphapiapp:ganbare", :object => 'http://socialtodo.herokuapp.com/ogp.html')
+      api.put_connections("me", "graphapiapp:ganbare", :ganbare => 'http://socialtodo.herokuapp.com/tasks/1')
       
     else
       @tasks = Task.all
