@@ -12,7 +12,7 @@
     <meta property="og:description" content="<%= @task.description %>" />
     <meta property="fb:app_id" content="<%= ENV['FACEBOOK_APP_ID'] %>" />
     <meta property="og:url" content="http://socialtodo.herokuapp.com/tasks/<%= @task.id %>" />
-    <meta property="og:type" content="graphapiapp:task" />
+    <meta property="og:type" content="<%= ENV['NAME_SPACE'] %>:<%= ENV['OBJECT_TYPE'] %>" />
   <% end %>
 
 </head>
