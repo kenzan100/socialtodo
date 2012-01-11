@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   end
 
   def my
-    @tasks = Task.where(:user_id => current_user.id)
+    @tasks = Task.where(:user_id => current_user.id).order("created_at desc")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -70,7 +70,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to '/my', notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
@@ -102,7 +102,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to '/my'}
       format.json { head :ok }
     end
   end
