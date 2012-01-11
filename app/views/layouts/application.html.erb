@@ -8,7 +8,7 @@
 
   <% if controller.controller_name === 'tasks' && controller.action_name === 'show' %>
     <meta property="og:title" content="<%= @task.description %>" />
-    <meta property="og:image" content="http://clic.k-free.net/1manen.jpg" />
+    <meta property="og:image" content="http://socialtodo.herokuapp.com/images/ganbare.png" />
     <meta property="og:description" content="<%= @task.description %>" />
     <meta property="fb:app_id" content="<%= ENV['FACEBOOK_APP_ID'] %>" />
     <meta property="og:url" content="http://socialtodo.herokuapp.com/tasks/<%= @task.id %>" />
@@ -18,10 +18,12 @@
 </head>
 <body>
 
+  <h1><%= link_to "Social Todo", root_url %></h1>
+
 <% if user_signed_in? %>
-  Hi! <img src="https://graph.facebook.com/<%= current_user.facebook_id %>/picture" width="20" height="20"> <%= link_to current_user.name, root_url %> | <%= link_to "my task", '/my' %> | <%= link_to 'タスクの登録', new_task_path %> | <%= link_to "Sign Out", destroy_user_session_path %>
+  Hi! <img src="https://graph.facebook.com/<%= current_user.facebook_id %>/picture" width="20" height="20"> <%= link_to "自分のタスク", '/my' %>  | <%= link_to 'タスクの登録', new_task_path %> | <%= link_to "ログアウト", destroy_user_session_path %>
 <% else %>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+  <%= link_to "Facebookアカウントでログイン", user_omniauth_authorize_path(:facebook) %>
 <% end %>
 
 <%= yield %>
