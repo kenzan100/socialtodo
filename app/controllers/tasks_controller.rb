@@ -14,7 +14,7 @@ class TasksController < ApplicationController
         friend_id.push(friend['friend_user_id'])
       end
 
-      @tasks = Task.where(:user_id => friend_id)
+      @tasks = Task.where(:user_id => friend_id).order("created_at desc")
       
     else
       @tasks = Task.all
@@ -112,7 +112,7 @@ class TasksController < ApplicationController
     #TODO double remote call
     
     api = Koala::Facebook::API.new(current_user.token)
-    api.put_connections("me", ENV['NAME_SPACE']+":"+ENV['ACTION_TYPE'], :task => 'http://socialtodo.herokuapp.com/tasks/'+params[:id])
+    api.get_connections("me", ENV['NAME_SPACE']+":"+ENV['ACTION_TYPE'], :task => 'http://socialtodo.herokuapp.com/tasks/'+params[:id])
     render
   end
 
