@@ -109,8 +109,7 @@ class TasksController < ApplicationController
 
   def ganbare
     api = Koala::Facebook::API.new(current_user.token)
-    # api.put_connections("me", ENV['NAME_SPACE']+":"+ENV['ACTION_TYPE'], :task => 'http://socialtodo.herokuapp.com/tasks/'+params[:id])
-    api.put_connections("me", ENV['NAME_SPACE']+":"+ENV['OBJECT_TYPE'], :task => 'http://socialtodo.herokuapp.com/tasks/'+params[:id])
+    api.put_connections("me", "social_todo:ganbare", :task => 'http://socialtodo.herokuapp.com/tasks/'+params[:id])
     render
   end
 
