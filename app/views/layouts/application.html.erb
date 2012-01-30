@@ -9,7 +9,7 @@
   <% if controller.controller_name === 'tasks' && controller.action_name === 'show' %>
     <meta property="og:title" content="<%= @task.description %>" />
     <meta property="og:image" content="http://socialtodo.herokuapp.com/images/ganbare2.png" />
-    <meta property="og:description" content="<%= @task.description %>" />
+    <meta property="og:description" content="<%= @task.user.name %>さんの[<%= @task.description %>]というタスクです。" />
     <meta property="fb:app_id" content="<%= ENV['FACEBOOK_APP_ID'] %>" />
     <meta property="og:url" content="http://socialtodo.herokuapp.com/tasks/<%= @task.id %>" />
     <meta property="og:type" content="<%= ENV['NAME_SPACE'] %>:<%= ENV['OBJECT_TYPE'] %>" />

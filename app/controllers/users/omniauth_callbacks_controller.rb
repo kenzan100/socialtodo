@@ -2,9 +2,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
 
     auth = env["omniauth.auth"]
-    uid  = auth["uid"]
+    uid  = auth["uid"].to_s
     
-    user = User.find_by_facebook_id(uid.to_s) || User.create!(:token => auth["credentials"]['token'],:facebook_id => uid, :name => auth["info"]["name"])
+    if user = User.find_by_facebook_id(uid)
+      user.attributes = {:name => auth["info"]['name'], :token => auth["credentials"]['token']}
+      user.save
+    else
+      user = User.create(:token => auth["credentials"]['token'],:facebook_id => uid, :name => auth["info"]["name"])
+    end
+
     graph = Koala::Facebook::GraphAPI.new(auth["credentials"]['token'])
     @friends = graph.get_connections("me", "friends")
 
